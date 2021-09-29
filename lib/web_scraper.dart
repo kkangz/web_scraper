@@ -51,7 +51,11 @@ class WebScraper {
       var client = Client();
 
       try {
-        var _response = await client.get(Uri.parse(baseUrl! + route));
+        String userAgent = "User-Agent: Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Mobile Safari/537.36";
+        var _response = await client.get(Uri.parse(baseUrl! + route),
+                                         headers: {
+                                           'authorization': "Token $userAgent"
+                                         });
         // Calculating Time Elapsed using timer from dart:core.
         timeElaspsed = stopwatch.elapsed.inMilliseconds;
         stopwatch.stop();
